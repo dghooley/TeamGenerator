@@ -1,0 +1,25 @@
+{
+  "name": "teamgenerator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "node run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dghooley/TeamGenerator.git"
+  },
+  "author": "Derick Hooley",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dghooley/TeamGenerator/issues"
+  },
+  "homepage": "https://github.com/dghooley/TeamGenerator#readme",
+  "dependencies": {
+    "inquirer": "^8.2.0"
+  }
+}
