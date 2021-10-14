@@ -1,4 +1,5 @@
 const Manager = require("./lib/manager");
+const Engineer = require("./lib/engineer")
 const inquirer = require("inquirer")
 const teamArray = [];
 function init(){
@@ -31,7 +32,41 @@ function init(){
             console.log(teamArray)
             mainMenu();
         })
+    }
 
+    function createEngineer(){
+        inquirer.prompt([
+            {
+                type:"input",
+                name: "engineerName",
+                message: "What is the team engineer's name?"
+            },
+            {
+                type:"input",
+                name: "engineerId",
+                message: "What is the team engineer's ID?"
+            },
+            {
+                type:"input",
+                name: "engineerEmail",
+                message: "What is the team engineer's email?"
+            },
+            {
+                type:"input",
+                name: "engineerOfficeNumber",
+                message: "What is the team manger's office number?"
+            },
+            {
+                type:"input",
+                name: "engineerGithub",
+                message: "What is the team engineer's GitHub address?"
+            },
+        ]).then(answers =>{
+            const engineer = new Manager(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.engineerOfficeNumber, answers.engineerGithub)
+            teamArray.push(engineer);
+            console.log(teamArray)
+            mainMenu();
+        })
     }
 
     function mainMenu(){
@@ -45,16 +80,16 @@ function init(){
         ]).then(answer =>{
             switch(answer.memberChoice){
                 case "Add Engineer":
-                // fire off createEngineer function;
+                    createEngineer();
                 break;
                 case "Add Intern":
-                    // fire off createIntern function;
+                    createIntern();
                 break;
                 case "Add Manager":
                     createManager();
                 break;
                 case "Quit":
-                    // fire off quit function()
+                    createQuit();
                     break;
             }
 
