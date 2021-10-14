@@ -10,22 +10,22 @@ function init(){
             {
                 type:"input",
                 name: "managerName",
-                message: "What is the team manger's name?"
+                message: "What is the team manager's name?"
             },
             {
                 type:"input",
                 name: "managerId",
-                message: "What is the team manger's ID?"
+                message: "What is the team manager's ID?"
             },
             {
                 type:"input",
                 name: "managerEmail",
-                message: "What is the team manger's email?"
+                message: "What is the team manager's email?"
             },
             {
                 type:"input",
                 name: "managerOfficeNumber",
-                message: "What is the team manger's office number?"
+                message: "What is the team manager's office number?"
             },
         ]).then(answers =>{
             const manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.managerOfficeNumber)
@@ -34,7 +34,7 @@ function init(){
             mainMenu();
         })
     }
-    
+
     function createEngineer(){
         inquirer.prompt([
             {
@@ -54,16 +54,11 @@ function init(){
             },
             {
                 type:"input",
-                name: "engineerOfficeNumber",
-                message: "What is the team manger's office number?"
-            },
-            {
-                type:"input",
                 name: "engineerGithub",
                 message: "What is the team engineer's GitHub address?"
             },
         ]).then(answers =>{
-            const engineer = new Manager(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.engineerOfficeNumber, answers.engineerGithub)
+            const engineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.engineerGithub)
             teamArray.push(engineer);
             console.log(teamArray)
             mainMenu();
@@ -89,16 +84,11 @@ function init(){
             },
             {
                 type:"input",
-                name: "internOfficeNumber",
-                message: "What is the team intern's office number?"
-            },
-            {
-                type:"input",
                 name: "internSchool",
                 message: "What is the team intern's school?"
             },
         ]).then(answers =>{
-            const engineer = new Manager(answers.internName, answers.internId, answers.internEmail, answers.internOfficeNumber, answers.internSchool)
+            const intern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.internSchool)
             teamArray.push(intern);
             console.log(teamArray)
             mainMenu();
@@ -131,8 +121,6 @@ function init(){
 
         })
     }
-
     createManager()
 }
-
 init();
