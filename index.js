@@ -69,6 +69,41 @@ function init(){
         })
     }
 
+    function createIntern(){
+        inquirer.prompt([
+            {
+                type:"input",
+                name: "internName",
+                message: "What is the team intern's name?"
+            },
+            {
+                type:"input",
+                name: "internId",
+                message: "What is the team intern's ID?"
+            },
+            {
+                type:"input",
+                name: "internEmail",
+                message: "What is the team intern's email?"
+            },
+            {
+                type:"input",
+                name: "internOfficeNumber",
+                message: "What is the team intern's office number?"
+            },
+            {
+                type:"input",
+                name: "internSchool",
+                message: "What is the team intern's school?"
+            },
+        ]).then(answers =>{
+            const engineer = new Manager(answers.internName, answers.internId, answers.internEmail, answers.internOfficeNumber, answers.internSchool)
+            teamArray.push(intern);
+            console.log(teamArray)
+            mainMenu();
+        })
+    }
+
     function mainMenu(){
         inquirer.prompt([
             {
