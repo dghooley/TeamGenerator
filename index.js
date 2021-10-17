@@ -10,7 +10,7 @@ let engineer = [];
 let intern = [];
 let teamArray = [manager, engineer, intern];
 
-
+// Refractored -------------
 function Prompt () {
 
     return inquirer
@@ -52,11 +52,58 @@ function Prompt () {
                     return Prompt();
                 }
             })
+        } else if (role === "Engineer") {
+            return inquirer
+            .prompt([{
+                type:'text',
+                name: 'github',
+                message: "What is the Engineer's GitHub username?"
+            },
+            {
+                type:'confirm',
+                name: 'anotherEntry',
+                message: "Would you like to add another employee?",
+                default: false 
+            }])
+            .then(({github, anotherEntry}) => {
+                engineer.push(new Engineer(employee, id, email, github))
+                if (anotherEntry) {
+                    return Prompt();
+                }
+            })
+        } else if (role === 'Intern') {
+            return inquirer
+            .prompt([{
+                type:'text',
+                name:'school',
+                message:"What is the Intern's school?"
+            },
+            {
+                type:'confirm',
+                name:'anotherEntry',
+                message:"Would you like to add another employee?",
+                default: false
+            }])
+            .then(({school, anotherEntry}) => {
+                intern.push(new Intern(employee, id, email, school))
+                if (anotherEntry) {
+                    return prompt();
+                }
+            })
         }
     })
 }
 
-function init(){
+Prompt()
+    .then(teamData => {
+        return generatePage(employeeArr)
+    })
+    .then(pageHTML => {
+        return writeFile(pageHTML)
+    })
+
+// Original code ---------------    
+/*function init(){
 
     function createManager(){
         inquirer.prompt([
