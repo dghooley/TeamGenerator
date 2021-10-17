@@ -1,3 +1,7 @@
+const Engineer = require("../lib/engineer");
+const Intern = require("../lib/intern");
+const Manager = require("../lib/manager");
+
 const generateEmployee = employeeArray => {
     return `
     ${employeeArray
@@ -76,7 +80,9 @@ module.exports = templateData => {
             <a class="brand-logo center">Your Team</a>
             </nav>
                 <div class="container">
-                    ${generateEmployee(employeeArray)}
+                    ${generateEmployee(Manager)}
+                    ${generateEmployee(Engineer)}
+                    ${generateEmployee(Intern)}
                     </div>
                     
                     <script src="https://cdnjs.cloudfare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
