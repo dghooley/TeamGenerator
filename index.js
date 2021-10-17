@@ -11,6 +11,50 @@ let intern = [];
 let teamArray = [manager, engineer, intern];
 
 
+function Prompt () {
+
+    return inquirer
+    .prompt([
+        {
+            type:'list',
+            name: 'role',
+            message: "What is the employee's role?",
+            choices: ['Manager', 'Engineer', 'Intern']
+        },
+        {
+            type:'text',
+            name: 'employee',
+            message: "What is the employee's name?"
+        },
+        {
+            type: 'text',
+            name: 'id',
+            message: "What is the employee's email?"
+        }
+    ])
+    .then(({employee, id, email, role}) => {
+        if (role === "Manager") {
+            return inquirer
+            .prompt ([{
+                type: 'text',
+                name: 'office',
+                message: "What is the Manager's office number?"
+            },
+            {
+                type:'confirm',
+                name:'anotherEntry',
+                message: "Would you like to add another employee?",
+                default: false
+            }])
+            .then(({office, anotherEntry}) => {
+                manager.push(new Manager(employee, id, email, office))
+                if(anotherEntry) {
+                    return Prompt();
+                }
+            })
+        }
+    })
+}
 
 function init(){
 
