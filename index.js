@@ -1,8 +1,17 @@
-const Manager = require("./lib/manager");
-const Engineer = require("./lib/engineer");
-const Intern = require("./lib/intern");
-const inquirer = require("inquirer")
-const teamArray = [];
+const Manager = require('./lib/manager');
+const Engineer = require('./lib/engineer');
+const Intern = require('./lib/intern');
+const inquirer = require('inquirer');
+const generatePage = require('./src/page-template')
+const writeFile = ('./src/generate-site')
+
+let manager = [];
+let engineer = [];
+let intern = [];
+let teamArray = [manager, engineer, intern];
+
+
+
 function init(){
 
     function createManager(){
@@ -124,7 +133,9 @@ function init(){
     createManager()
 }
 
-const writeFile = data => {
+init();
+
+/*const writeFile = data => {
     fs.writeFile('./dist/index.html', data, err => {
         if (err) {
             console.log(err);
@@ -134,4 +145,7 @@ const writeFile = data => {
         }
     })
 };
-init();
+function createManager() {
+    fs.writeFileSync(outputPath, render(createManager), "utf-8")
+}
+*/

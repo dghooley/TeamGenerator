@@ -1,91 +1,62 @@
-const Engineer = require("../lib/engineer");
-const Intern = require("../lib/intern");
-const Manager = require("../lib/manager");
+const generateCards = teamData => {
 
-const generateEmployee = employeeArray => {
-    return `
-    ${employeeArray
-    .filter(({ role }) => {
-        if (role === 'Manager')
-        return true;
-    })
-    .map(({ name, id, email, officeNumber }) => {
-        return `
-        <div class="card col s4">
-        <span class="card-title">Manager</span>
-        <h3>${name}</h3>
-        <h4>ID: ${id}</h4>
-        <h4>Email: ${email}</h4>
-        <h4>Office: ${officeNumber}</h4>
+    const manager = teamData.manager.map(function(job) {
+        let managerHtml = `
+        <div class="card" style="width: 18rem;">
+            <h2>${job.name}</h2>
+            <h4>Manager<h4>
+            <p>ID: ${job.id}</p>
+            <p>Email: <a href="mailto:${job.email}">${job.email}</a></p>
+            <p>Office Number: ${job.office}</p>
         </div>
         `
+        return managerHtml
+    });
+
+    const engineer = teamData.engineer.map(function(job) {
+        let engineerHtml = `
+        <div class="card" style="width: 18rem;">
+            <h2>${job.name}</h2>
+            <h4>Engineer<h4>
+            <p>ID: ${job.id}</p>
+            <p>Email: <a href="mailto:${job.email}">${job.email}</a></p>
+            <p> Github: <a href="https://github.com/${job.github}" target="_blank">${job.github}</a></p>
+        </div>
+        `
+        return engineerHtml
     })
-    .join('')}
-    
-    ${employeeArray
-        .filter(({ role }) => {
-            if (role === 'Engineer')
-            return true;
-        })
-        .map(({ name, id, email, gitHub }) => {
-            return `
-            <div class="card col s4">
-            <span class="card-title">Manager</span>
-            <h3>${name}</h3>
-            <h4>ID: ${id}</h4>
-            <h4>Email: ${email}</h4>
-            <h4>Office: ${gitHub}</h4>
-            </div>
-            `
-        })
-        .join('')}
-        
-        ${employeeArray
-            .filter(({ role }) => {
-                if (role === 'Intern')
-                return true;
-            })
-            .map(({ name, id, email, school }) => {
-                return `
-                <div class="card col s4">
-                <span class="card-title">Manager</span>
-                <h3>${name}</h3>
-                <h4>ID: ${id}</h4>
-                <h4>Email: ${email}</h4>
-                <h4>Office: ${school}</h4>
-                </div>
-                `
-            })
-            .join('')}`
+
+    const intern = teamData.intern.map(function(job) {
+        let interHtml = `
+        <div class="card" style="width: 18rem;">
+            <h2>${job.name}</h2>
+            <h4>Intern<h4>
+            <p>ID: ${job.id}</p>
+            <p>Email: <a href="mailto:${job.email}">${job.email}</a></p>
+            <p> School: ${job.school}</p>
+        </div>
+        `
+        return interHtml
+    })
+    return [manager,engineer,intern]
 }
 
-
 module.exports = templateData => {
-    const employeeArray = templateData;
     return `
-    <!DOCTYPE html>
-    <html lang="en">
+        <!DOCTYPE html>
+        <html lang="en">
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <meta http-equiv="X-UA-Compatible" content="ie=edge">
-            <title>Team Generator</title>
-            <link rel="stylesheet" href="https://cdnjs.cloudfare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-            <link rel="stylesheet" href="style.css">
-            </head>
-            <body>
-            <nav>
-            <div class="nav-wrapper" id="navbar">
-            <a class="brand-logo center">Your Team</a>
-            </nav>
-                <div class="container">
-                    ${generateEmployee(Manager)}
-                    ${generateEmployee(Engineer)}
-                    ${generateEmployee(Intern)}
-                    </div>
-                    
-                    <script src="https://cdnjs.cloudfare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-                    </body>
-                </html>`
-};
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+            <title>My Team</title>
+        </head>
+        <body>
+            <header>
+            <h1 class="text-center">My Team</h1>
+            </header>
+            ${generateCards(templateData)}
+        </body>
+        </html>    
+        `
+}
