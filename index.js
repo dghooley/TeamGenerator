@@ -123,4 +123,15 @@ function init(){
     }
     createManager()
 }
+
+const writeFile = data => {
+    fs.writeFile('./dist/index.html', data, err => {
+        if (err) {
+            console.log(err);
+            return;
+        } else {
+            console.log('Team Profile Generated! Check out index.html to see your team profile!')
+        }
+    })
+};
 init();
