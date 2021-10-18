@@ -1,5 +1,48 @@
-const checkIfEqual = require('../lib/random.js');
+const Employee = require("../lib/Employee");
 
-test('checks if 10 is equal to 10', () => {
-    expect(checkIfEqual(10, 10)).toBe(true);
+test("Can instantiate Employee instance", () => {
+    const c = new Employee();
+    expect(typeof (c)).toBe("object");
+});
+
+test("Can set name via constructor arguments", () => {
+    const name = "Echo";
+    const e = new Employee(name);
+    expect(e.name).toBe(name);
+});
+
+test("Can set id via constructor argument", () => {
+    const testValue = 100;
+    const c = new Employee("Charles", testValue);
+    expect(c.id).toBe(testValue);
+});
+
+test("Can set email via constructor argument", () => {
+    const testValue = "test@test.com";
+    const c = new Employee("Charles", 1, testValue);
+    expect(c.email).toBe(testValue);
+});
+
+test("Can get name via getName()", () => {
+    const testValue = "Echo";
+    const c = new Employee(testValue);
+    expect(c.getName()).toBe(testValue);
+});
+
+test("Can get id via getId()", () => {
+    const testValue = 100;
+    const c = new Employee("Charles", testValue);
+    expect(c.getId()).toBe(testValue);
+});
+
+test("Can get email via getEmail()", () => {
+    const testValue = "test@test.com";
+    const c = new Employee("Charles", 1, testValue);
+    expect(c.getEmail()).toBe(testValue);
+});
+
+test("getRole() should return \"Employee\"", () => {
+    const testValue = "Employee";
+    const e = new Employee("Alice", 1, "test@test.com");
+    expect(e.getRole()).toBe(testValue);
 });
