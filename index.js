@@ -78,13 +78,13 @@ const internQuestions = [
     {
         type: 'input',
         name: 'internEmail',
-        message: 'Enter the email adress for this intern'
+        message: 'Enter the email address for this intern'
     },
 
     {
         type: 'input',
         name: 'school',
-        message: 'What school does this interen attend, if this intern is not currently attending a school enter "N/A" ',
+        message: 'What school does this intern attend, if this intern is not currently attending a school enter "N/A" ',
     },
 ]
 
